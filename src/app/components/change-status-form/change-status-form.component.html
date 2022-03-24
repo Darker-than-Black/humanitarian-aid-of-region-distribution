@@ -1,0 +1,37 @@
+<p-dialog
+  [visible]="true"
+  [modal]="true"
+  [maximizable]="true"
+  [header]="modalTitle"
+  [style]="{width: '450px'}"
+  [breakpoints]="{'960px': '75vw', '640px': '97vw'}"
+  (visibleChange)="closeModal.emit()"
+>
+  <div class="text-center mt-2">
+    <label *ngFor="let radio of radioGroupConfig" [for]="radio.code" class="mr-4">
+      <p-radioButton
+        name="groupname"
+        [inputId]="radio.code"
+        [value]="radio"
+        [(ngModel)]="selectedValue"
+      ></p-radioButton>
+      <span class="ml-2">{{ radio.name }}</span>
+    </label>
+  </div>
+
+  <div class="mt-5 text-center">
+    <button
+      pButton
+      type="button"
+      class="p-button-success mr-4"
+      (click)="update()"
+    >Так</button>
+
+    <button
+      pButton
+      type="button"
+      class="p-button-danger"
+      (click)="closeModal.emit()"
+    >Ні</button>
+  </div>
+</p-dialog>

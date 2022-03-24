@@ -1,0 +1,41 @@
+<app-table
+  [data]="store.list"
+  [loading]="loading"
+  [config]="tableConfig"
+  [tableDataTemplate]="tableDataTemplate"
+>
+  <ng-template #tableDataTemplate let-data let-item="item" let-config="config">
+    <ng-container [ngSwitch]="config.key">
+      <ng-container *ngSwitchCase="'name'" >
+        <a *ngIf="item.status.is_final" [routerLink]="['/supply-distribution', item.id ]">
+          {{ data }}
+        </a>
+
+        <ng-container *ngIf="!item.status.is_final" >
+          {{ data }}
+
+          <button
+            pButton
+            type="button"
+            label="Отримано"
+            class="p-button-text mt-2 ml-2 p-0"
+            (click)="dialogChangeStatus = item"
+          ></button>
+        </ng-container>
+      </ng-container>
+
+      <span
+        *ngSwitchCase="'status.name'"
+        [class]="item.status.is_final ? 'final-status' : ''"
+      >
+        {{ data }}
+      </span>
+    </ng-container>
+  </ng-template>
+</app-table>
+
+<app-change-status-form
+  *ngIf="dialogChangeStatus"
+  [data]="dialogChangeStatus"
+  (closeModal)="dialogChangeStatus = undefined"
+></app-change-status-form>

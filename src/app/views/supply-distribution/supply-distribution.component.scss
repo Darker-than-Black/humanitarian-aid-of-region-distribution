@@ -1,0 +1,12 @@
+.status {
+  padding: 0.5rem;
+  border-radius: 3px;
+
+  &.green {
+    background: var(--green-500);
+  }
+
+  &.yellow {
+    background: var(--yellow-500);
+  }
+}

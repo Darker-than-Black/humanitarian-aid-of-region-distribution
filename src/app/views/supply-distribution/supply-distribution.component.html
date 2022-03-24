@@ -1,0 +1,25 @@
+<nav>
+  <a class="p-button p-button-text link" routerLink="/">
+    <i class="pi pi-arrow-left link__icon"></i>
+    <span class="link__text">Назад</span>
+  </a>
+</nav>
+
+<app-table
+  [data]="store.list"
+  [loading]="loading"
+  [config]="tableConfig"
+  [tableDataTemplate]="tableDataTemplate"
+>
+  <ng-template #tableDataTemplate let-data let-item="item" let-config="config">
+    <ng-container [ngSwitch]="config.key">
+      <div
+        *ngSwitchCase="'delivery_balance'"
+        [class]="item.delivery_balance ? 'yellow' : 'green'"
+        class="status"
+      >
+        {{ data }}
+      </div>
+    </ng-container>
+  </ng-template>
+</app-table>

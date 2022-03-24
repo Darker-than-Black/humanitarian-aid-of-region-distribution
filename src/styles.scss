@@ -1,1 +1,33 @@
-/* You can add global styles to this file, and also import other style files */
+.link {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  font-weight: bold;
+
+  &__text {
+    font-size: 16px;
+  }
+
+  &__icon {
+    position: relative;
+    margin-right: 0.5rem;
+    transition: 0.2s all;
+  }
+
+  &:hover {
+    .link__icon {
+      transform: translate(-4px);
+    }
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .goods-table .p-datatable-wrapper {
+    overflow-x: scroll;
+  }
+
+  .goods-table .p-datatable-header {
+    display: none;
+  }
+}
