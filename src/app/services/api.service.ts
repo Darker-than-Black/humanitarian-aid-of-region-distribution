@@ -1,12 +1,13 @@
-import { Injectable, isDevMode } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, Observable, of, tap } from 'rxjs';
 
+import { UrlBuilder } from './url-builder';
+import { ServerResponse } from '../types/api';
 import { StoreService } from './store.service';
 import { NotificationService } from './notification.service';
 import { NOTIFICATION_TYPES } from '../constants/notificationTypes';
 import { notificationMessages } from '../constants/notificationMessages';
-import { ServerResponse } from '../types/api';
 
 @Injectable({
   providedIn: 'root'
@@ -47,7 +48,7 @@ export class ApiService<ItemType, ItemFormType> {
   }
 
   getSelectData(url: string): Observable<Record<string, any>[]> {
-    return this.http.get<ServerResponse<any[]>>(this.addDevMode(url)).pipe(
+    return this.http.get<ServerResponse<any[]>>(new UrlBuilder(url).url).pipe(
       map(({ data }) => data),
       catchError(this.handleError<Record<string, any>[]>(notificationMessages.serverError, 'getSelectData', [])),
     );
@@ -55,17 +56,13 @@ export class ApiService<ItemType, ItemFormType> {
 
   onInit(routes: Record<string, string>): void {
     Object.entries(routes).forEach(([key, url]) => {
-      this.routes[key] = this.addDevMode(url);
+      this.routes[key] = new UrlBuilder(url).url;
     });
   }
 
   // refresh service
   onRestore() {
     this.routes = {};
-  }
-
-  private addDevMode(url: string): string {
-    return isDevMode() ? `${url}&dev=1` : url;
   }
 
   private responseHandler<T>({data, error}: ServerResponse<T>, defaultValue: any): T {
