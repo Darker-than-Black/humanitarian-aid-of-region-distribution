@@ -1,5 +1,5 @@
 import { Table } from 'primeng/table';
-import { Component, Input, ViewChild, TemplateRef, ElementRef } from '@angular/core';
+import { Component, Input, ViewChild, TemplateRef, ElementRef, Output, EventEmitter } from '@angular/core';
 
 import { DEFAULT_TABLE_SETTINGS } from '../../configs/defaultTableSettings';
 import { TableColumnConfig, TableSettings, TableSettingsLocal } from '../../types/table';
@@ -18,6 +18,8 @@ export class TableComponent<ItemType> {
 
   @Input() captionTemplate?: TemplateRef<any>;
   @Input() tableDataTemplate?: TemplateRef<any>;
+
+  @Output() updateColumn = new EventEmitter<ItemType>();
 
   @ViewChild('tableRef') tableRef!: Table;
   @ViewChild('upScrollRef') upScrollRef!: ElementRef<HTMLElement>;

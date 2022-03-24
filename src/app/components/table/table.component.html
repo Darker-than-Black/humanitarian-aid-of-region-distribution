@@ -61,6 +61,7 @@
           [template]="tdTemplate"
           [config]="column"
           [item]="item"
+          (update)="updateColumn.emit($event)"
         ></app-table-data>
 
         <ng-template #tdTemplate let-data let-item="item">

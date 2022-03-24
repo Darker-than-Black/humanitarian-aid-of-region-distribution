@@ -31,5 +31,11 @@ export class HomeComponent extends PageMixin<Item, ItemForm> implements OnInit {
       this.loading = false;
     });
   }
+
+  onUpdateColumn(data: Item): void {
+    console.log('onUpdateColumn', data);
+    // this.apiService.updateItem({...this.item, ...this.model})
+    //   .subscribe(() => {});
+  }
 }
 

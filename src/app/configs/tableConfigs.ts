@@ -15,7 +15,7 @@ export const DOZ_SUPPLY_TABLE_CONFIG: TableColumnConfig[] = [
   {
     key: 'delivered',
     label: 'Дата надходження',
-    handler: formatDate,
+    viewHandler: formatDate,
     filterable: true,
   },
   {
@@ -26,7 +26,7 @@ export const DOZ_SUPPLY_TABLE_CONFIG: TableColumnConfig[] = [
   {
     key: 'updated',
     label: 'Дата остінньої зміни статусу',
-    handler: formatDate,
+    viewHandler: formatDate,
     filterable: true,
   },
 ];

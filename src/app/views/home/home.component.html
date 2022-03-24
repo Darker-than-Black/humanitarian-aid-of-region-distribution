@@ -3,6 +3,7 @@
   [loading]="loading"
   [config]="tableConfig"
   [tableDataTemplate]="tableDataTemplate"
+  (updateColumn)="onUpdateColumn($event)"
 >
   <ng-template #tableDataTemplate let-data let-item="item" let-config="config">
     <ng-container [ngSwitch]="config.key">

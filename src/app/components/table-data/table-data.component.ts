@@ -1,5 +1,15 @@
 import { get } from 'lodash';
-import {ChangeDetectorRef, Component, ElementRef, Input, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  Input,
+  OnInit,
+  TemplateRef,
+  ViewChild,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 
 import { EditorBuilder } from './editor-builder';
 import { ApiService } from '../../services/api.service';
@@ -20,6 +30,8 @@ export class TableDataComponent<ItemType extends Record<string, any>> implements
   @Input() config!: TableColumnConfig;
   @Input() template?: TemplateRef<any>;
 
+  @Output() update = new EventEmitter<ItemType>();
+
   @ViewChild('contentRef') contentRef!: ElementRef;
 
   fields: CustomFormlyFieldConfig[] = [];
@@ -30,12 +42,12 @@ export class TableDataComponent<ItemType extends Record<string, any>> implements
   }
 
   get previewData(): string {
-    const { handler = DEFAULT_HANDLER, defaultValue = '–' } = this.config;
-    return this.fieldData ? handler(this.fieldData) : defaultValue;
+    const { viewHandler = DEFAULT_HANDLER, defaultValue = '–' } = this.config;
+    return this.fieldData ? viewHandler(this.fieldData) : defaultValue;
   }
 
   get isEditable(): boolean {
-    return Boolean(this.config.type);
+    return Boolean(this.config.editorType);
   }
 
   get isEmptyTemplate(): boolean {
@@ -68,14 +80,11 @@ export class TableDataComponent<ItemType extends Record<string, any>> implements
 
   onLeave(): void {
     const { key } = this.config;
-    if (this.model[key] === this.item[key]) {
-      this.fields = [];
-      return;
+
+    if (this.model[key] !== this.item[key]) {
+      this.update.emit({...this.item, ...this.model});
     }
 
-    this.apiService.updateItem({...this.item, ...this.model})
-      .subscribe(() => {
-        this.fields = [];
-      });
+    this.fields = [];
   }
 }

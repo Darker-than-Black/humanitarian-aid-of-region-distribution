@@ -1,5 +1,6 @@
-import { TableColumnConfig } from '../../types/table';
-import { CustomFormlyFieldConfig } from '../../types/form';
+import {TableColumnConfig} from '../../types/table';
+import {CustomFormlyFieldConfig} from '../../types/form';
+import { FIELD_TYPES } from '../../constants/fieldTypes';
 
 export interface EditorBuilderOptions extends TableColumnConfig {
   onLeave: () => void
@@ -16,8 +17,8 @@ export class EditorBuilder implements CustomFormlyFieldConfig {
 
   constructor(options: EditorBuilderOptions) {
     this.key = options.key;
-    this.type = options.type || 'text';
     this.templateOptions.onLeave = options.onLeave;
+    this.type = options.editorType || FIELD_TYPES.TEXT;
     this.templateOptions.mask = options.inputMask || '';
   }
 }

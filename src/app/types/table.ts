@@ -25,10 +25,10 @@ export interface TableSettings {
 export interface TableColumnConfig {
   key: string
   label: string
-  defaultValue?: any
-  minWidth?: string // default: '15rem'
-  type?: FIELD_TYPES
-  inputMask?: string
   filterable?: boolean
-  handler?: (data: any) => any
+  defaultValue?: any // default '–'
+  minWidth?: string // default: '15rem'
+  editorType?: FIELD_TYPES
+  inputMask?: string
+  viewHandler?: (data: any) => any
 }
