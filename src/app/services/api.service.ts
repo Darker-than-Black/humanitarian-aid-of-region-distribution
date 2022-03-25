@@ -4,7 +4,6 @@ import { catchError, map, Observable, of, tap } from 'rxjs';
 
 import { UrlBuilder } from './url-builder';
 import { ServerResponse } from '../types/api';
-import { StoreService } from './store.service';
 import { NotificationService } from './notification.service';
 import { NOTIFICATION_TYPES } from '../constants/notificationTypes';
 import { notificationMessages } from '../constants/notificationMessages';
@@ -12,45 +11,41 @@ import { notificationMessages } from '../constants/notificationMessages';
 @Injectable({
   providedIn: 'root'
 })
-export class ApiService<ItemType, ItemFormType> {
-  constructor(
-    private http: HttpClient,
-    private store: StoreService<ItemType>,
-    private notification: NotificationService,
-  ) {}
+export class ApiService {
+  constructor(private http: HttpClient, private notification: NotificationService) {}
 
   private routes: Record<string, string> = {};
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
 
-  getData(params?: Record<string, string>): Observable<ItemType[]> {
-    return this.http.get<ServerResponse<ItemType[]>>(this.routes['GET_DATA'],{ params }).pipe(
-      map(data => this.responseHandler<ItemType[]>(data, [])),
-      catchError(this.handleError<ItemType[]>(notificationMessages.serverError, 'getData', [])),
+  getData<T>(params?: Record<string, string>, defaultValue: any = []): Observable<T> {
+    return this.http.get<ServerResponse<T>>(this.routes['GET_DATA'],{ params }).pipe(
+      map(data => this.responseHandler<T>(data, defaultValue)),
+      catchError(this.handleError<T>(notificationMessages.serverError, 'getData', defaultValue)),
     );
   }
 
-  updateItem(item: ItemType): Observable<void> {
-    return this.http.post<ServerResponse<ItemType>>(this.routes['UPDATE_ROW'], item, this.httpOptions).pipe(
-      map(({ data}) => this.store.updateListItem(data)),
+  updateItem<T>(item: T, defaultValue?: any): Observable<T> {
+    return this.http.post<ServerResponse<T>>(this.routes['UPDATE_ROW'], item, this.httpOptions).pipe(
+      map(({ data}) => data),
       tap(() => this.notification.add(notificationMessages.updateSuccess, NOTIFICATION_TYPES.SUCCESS)),
-      catchError(this.handleError<void>(notificationMessages.serverError, 'updateItem')),
+      catchError(this.handleError<T>(notificationMessages.serverError, 'updateItem', defaultValue)),
     );
   }
 
-  addItem(item: ItemFormType): Observable<void> {
-    return this.http.post<ServerResponse<ItemType>>(this.routes['ADD_ROW'], item, this.httpOptions).pipe(
-      map(({ data }) => this.store.addListItem(data)),
-      tap(() => this.notification.add(notificationMessages.fieldSuccess, NOTIFICATION_TYPES.SUCCESS)),
-      catchError(this.handleError<void>(notificationMessages.serverError, 'addItem')),
-    );
-  }
-
-  getSelectData(url: string): Observable<Record<string, any>[]> {
-    return this.http.get<ServerResponse<any[]>>(new UrlBuilder(url).url).pipe(
+  addItem<T, R>(item: T, defaultValue?: any): Observable<R> {
+    return this.http.post<ServerResponse<R>>(this.routes['ADD_ROW'], item, this.httpOptions).pipe(
       map(({ data }) => data),
-      catchError(this.handleError<Record<string, any>[]>(notificationMessages.serverError, 'getSelectData', [])),
+      tap(() => this.notification.add(notificationMessages.fieldSuccess, NOTIFICATION_TYPES.SUCCESS)),
+      catchError(this.handleError<R>(notificationMessages.serverError, 'addItem', defaultValue)),
+    );
+  }
+
+  getSelectData<T>(url: string): Observable<T> {
+    return this.http.get<ServerResponse<T>>(new UrlBuilder(url).url).pipe(
+      map(({ data }) => data),
+      catchError(this.handleError<T>(notificationMessages.serverError, 'getSelectData', [])),
     );
   }
 

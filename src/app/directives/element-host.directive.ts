@@ -1,8 +1,8 @@
 import { Directive, ViewContainerRef } from '@angular/core';
 
 @Directive({
-  selector: '[editorType]'
+  selector: '[elementHost]'
 })
-export class EditorTypeDirective {
+export class ElementHostDirective {
   constructor(public viewContainerRef: ViewContainerRef) {}
 }

@@ -1,0 +1,25 @@
+<nav>
+  <a class="p-button p-button-text link" [routerLink]="['/supply', parentId]">
+    <i class="pi pi-arrow-left link__icon"></i>
+    <span class="link__text">Назад</span>
+  </a>
+</nav>
+
+<ul class="list" style="max-width: 400px;">
+  <li class="list__item">
+    <span class="list__item-title">Кількість поставки</span>
+    {{ supply.quantity }}
+  </li>
+
+  <li class="list__item">
+    <span class="list__item-title">Залишок поставки</span>
+    {{ supply.delivery_balance }}
+  </li>
+</ul>
+
+<app-table
+  [data]="store.list"
+  [loading]="loading"
+  [config]="tableConfig"
+  (updateColumn)="onUpdateColumn($event)"
+></app-table>

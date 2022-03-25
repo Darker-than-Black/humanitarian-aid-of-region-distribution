@@ -6,8 +6,8 @@ import { ApiService } from '../services/api.service';
 @Component({
   template: '',
 })
-export class PageMixin<R, T> implements OnDestroy {
-  constructor(protected store: StoreService<R>, protected apiService: ApiService<R, T>) {}
+export class PageMixin<R> implements OnDestroy {
+  constructor(protected store: StoreService<R>, protected apiService: ApiService) {}
 
   loading: boolean = false;
 

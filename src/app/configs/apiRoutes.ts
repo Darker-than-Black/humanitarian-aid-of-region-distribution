@@ -11,3 +11,9 @@ export const SUPPLY_DISTRIBUTION_ROUTES = {
   UPDATE_ROW: '',
   ADD_ROW: '',
 };
+
+export const ZOZ_DISTRIBUTION_ROUTES = {
+  GET_DATA: `${API_URL}index.php?option=com_fabrik&format=raw&task=plugin.userAjax&method=Humanitarian&function=getZozDistribution`,
+  UPDATE_ROW: `${API_URL}index.php?option=com_fabrik&format=raw&task=plugin.userAjax&method=Humanitarian&function=saveZozDistribution`,
+  ADD_ROW: '',
+};

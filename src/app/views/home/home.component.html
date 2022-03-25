@@ -3,12 +3,11 @@
   [loading]="loading"
   [config]="tableConfig"
   [tableDataTemplate]="tableDataTemplate"
-  (updateColumn)="onUpdateColumn($event)"
 >
   <ng-template #tableDataTemplate let-data let-item="item" let-config="config">
     <ng-container [ngSwitch]="config.key">
       <ng-container *ngSwitchCase="'name'" >
-        <a *ngIf="item.status.is_final" [routerLink]="['/supply-distribution', item.id ]">
+        <a *ngIf="item.status.is_final" [routerLink]="['/supply', item.id ]">
           {{ data }}
         </a>
 
@@ -19,7 +18,7 @@
             pButton
             type="button"
             label="Отримано"
-            class="p-button-text mt-2 ml-2 p-0"
+            class="mt-2 ml-2 p-0"
             (click)="dialogChangeStatus = item"
           ></button>
         </ng-container>

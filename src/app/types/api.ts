@@ -29,3 +29,23 @@ export interface Status {
   name: string
   is_final: boolean
 }
+
+export interface ZozDistribution {
+  divisions: ZozDivision[]
+  supply: ZozSupply
+}
+
+export interface ZozDivision {
+  division_id: string
+  division?: string
+  need?: string
+  comment?: string
+  recommended_quantity?: string
+  zoz_id?: string
+  distribution_quantity?: string
+}
+
+export interface ZozSupply {
+  delivery_balance: string
+  quantity: string
+}

@@ -8,6 +8,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormlyModule} from '@ngx-formly/core';
 
 import {FIELD_TYPES} from './constants/fieldTypes';
+import { ROUTES } from './routes';
 
 import {ToastModule} from 'primeng/toast';
 import {TableModule} from 'primeng/table';
@@ -21,7 +22,6 @@ import {InputTextareaModule} from 'primeng/inputtextarea';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 
 import {AppComponent} from './app.component';
-import {EditorTypeDirective} from './directives/editor-type.directive';
 import {TableComponent} from './components/table/table.component';
 import {TableDataComponent} from './components/table-data/table-data.component';
 import {InputComponent} from './components/forms/input/input.component';
@@ -33,10 +33,12 @@ import {DynamicSelectComponent} from './components/forms/dynamic-select/dynamic-
 import {DynamicInputMaskComponent} from './components/forms/dynamic-input-mask/dynamic-input-mask.component';
 import {DynamicTextareaComponent} from './components/forms/dynamic-textarea/dynamic-textarea.component';
 import {WrapperDynamicInputComponent} from './components/forms/wrapper-dynamic-input/wrapper-dynamic-input.component';
-import { ChangeStatusFormComponent } from './components/change-status-form/change-status-form.component';
-import { HomeComponent } from './views/home/home.component';
-import { PageNotFoundComponent } from './views/page-not-found/page-not-found.component';
-import { SupplyDistributionComponent } from './views/supply-distribution/supply-distribution.component';
+import {ChangeStatusFormComponent} from './components/change-status-form/change-status-form.component';
+import {HomeComponent} from './views/home/home.component';
+import {PageNotFoundComponent} from './views/page-not-found/page-not-found.component';
+import {SupplyDistributionComponent} from './views/supply-distribution/supply-distribution.component';
+import {ElementHostDirective} from './directives/element-host.directive';
+import {ZozDistributionComponent} from './views/zoz-distribution/zoz-distribution.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,6 @@ import { SupplyDistributionComponent } from './views/supply-distribution/supply-
     SelectComponent,
     TextareaComponent,
     TableDataComponent,
-    EditorTypeDirective,
     InputMaskComponent,
     DynamicInputComponent,
     DynamicSelectComponent,
@@ -57,6 +58,8 @@ import { SupplyDistributionComponent } from './views/supply-distribution/supply-
     HomeComponent,
     PageNotFoundComponent,
     SupplyDistributionComponent,
+    ElementHostDirective,
+    ZozDistributionComponent,
   ],
   imports: [
     TableModule,
@@ -85,11 +88,7 @@ import { SupplyDistributionComponent } from './views/supply-distribution/supply-
         { name: 'input-wrapper', component: WrapperDynamicInputComponent },
       ],
     }),
-    RouterModule.forRoot([
-      {path: '', component: HomeComponent},
-      {path: 'supply-distribution/:id', component: SupplyDistributionComponent},
-      {path: '**', component: PageNotFoundComponent},
-    ],{ useHash: true }),
+    RouterModule.forRoot(ROUTES,{ useHash: true }),
   ],
   providers: [
     MessageService,

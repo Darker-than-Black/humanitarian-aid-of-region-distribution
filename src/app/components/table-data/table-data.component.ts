@@ -14,7 +14,7 @@ import {
 import { EditorBuilder } from './editor-builder';
 import { ApiService } from '../../services/api.service';
 import { TableColumnConfig } from '../../types/table';
-import { CustomFormlyFieldConfig, ItemForm } from '../../types/form';
+import { CustomFormlyFieldConfig } from '../../types/form';
 
 const DEFAULT_HANDLER = (data: any) => data;
 
@@ -24,7 +24,7 @@ const DEFAULT_HANDLER = (data: any) => data;
   styleUrls: ['./table-data.component.scss']
 })
 export class TableDataComponent<ItemType extends Record<string, any>> implements OnInit {
-  constructor(private apiService: ApiService<ItemType, ItemForm>, private cd: ChangeDetectorRef) {}
+  constructor(private apiService: ApiService, private cd: ChangeDetectorRef) {}
 
   @Input() item!: ItemType;
   @Input() config!: TableColumnConfig;

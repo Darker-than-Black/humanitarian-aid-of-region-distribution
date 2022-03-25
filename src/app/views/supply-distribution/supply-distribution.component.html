@@ -13,13 +13,14 @@
 >
   <ng-template #tableDataTemplate let-data let-item="item" let-config="config">
     <ng-container [ngSwitch]="config.key">
-      <div
+      <a
         *ngSwitchCase="'delivery_balance'"
+        [routerLink]="['/supply', pageId, 'zoz', item.item_id ]"
         [class]="item.delivery_balance ? 'yellow' : 'green'"
-        class="status"
+        class="status link"
       >
         {{ data }}
-      </div>
+      </a>
     </ng-container>
   </ng-template>
 </app-table>

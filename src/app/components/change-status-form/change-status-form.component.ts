@@ -1,16 +1,16 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
-import { ItemForm } from '../../types/form';
 import { Item, Status } from '../../types/api';
 import { ApiService } from '../../services/api.service';
+import { StoreService } from '../../services/store.service';
 
 @Component({
   selector: 'app-change-status-form',
   templateUrl: './change-status-form.component.html',
   styleUrls: ['./change-status-form.component.scss']
 })
-export class ChangeStatusFormComponent<ItemType> {
-  constructor(private apiService: ApiService<ItemType, ItemForm>) {
+export class ChangeStatusFormComponent {
+  constructor(private apiService: ApiService, private store: StoreService<Item>) {
     const [firstStatus] = this.radioGroupConfig;
     this.selectedValue = firstStatus;
   }
@@ -38,7 +38,8 @@ export class ChangeStatusFormComponent<ItemType> {
 
   update() {
     this.apiService.updateItem({...this.data, status: this.selectedValue} as any)
-      .subscribe(() => {
+      .subscribe((data) => {
+        this.store.updateListItem(data);
         this.closeModal.emit();
       });
   }

@@ -1,5 +1,6 @@
-import { formatDate } from '../utils';
-import { TableColumnConfig } from '../types/table';
+import {formatDate} from '../utils';
+import {TableColumnConfig} from '../types/table';
+import {FIELD_TYPES} from "../constants/fieldTypes";
 
 export const DOZ_SUPPLY_TABLE_CONFIG: TableColumnConfig[] = [
   {
@@ -52,5 +53,34 @@ export const SUPPLY_DISTRIBUTION_TABLE_CONFIG: TableColumnConfig[] = [
     label: 'Залишок поставки',
     filterable: true,
     defaultValue: 0,
+  },
+];
+
+export const ZOZ_DISTRIBUTION_TABLE_CONFIG: TableColumnConfig[] = [
+  {
+    key: 'division',
+    label: 'ЗОЗ-отримувачі',
+    filterable: true,
+  },
+  {
+    key: 'need',
+    label: 'Середньомісячна потреба',
+    filterable: true,
+  },
+  {
+    key: 'recommended_quantity',
+    label: 'Рекомендована кількість розподілу',
+    filterable: true,
+  },
+  {
+    key: 'distribution_quantity',
+    label: 'Обсяг розподілу',
+    filterable: true,
+    editorType: FIELD_TYPES.NUMBER,
+  },
+  {
+    key: 'comment',
+    label: 'Коментар',
+    filterable: true,
   },
 ];
