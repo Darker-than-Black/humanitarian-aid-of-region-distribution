@@ -6,7 +6,11 @@ import { ApiService } from '../../services/api.service';
 import { StoreService } from '../../services/store.service';
 import { SupplyDistribution } from '../../types/api';
 import { SUPPLY_DISTRIBUTION_ROUTES } from '../../configs/apiRoutes';
-import { SUPPLY_DISTRIBUTION_TABLE_CONFIG } from '../../configs/tableConfigs';
+import {
+  FINAL_SUPPLY_DISTRIBUTION_TABLE_CONFIG,
+  NON_FINAL_SUPPLY_DISTRIBUTION_TABLE_CONFIG,
+} from '../../configs/tableConfigs';
+import {TableColumnConfig} from "../../types/table";
 
 @Component({
   selector: 'app-supply-distribution',
@@ -21,17 +25,22 @@ export class SupplyDistributionComponent extends PageMixin<SupplyDistribution> i
   ) {
     super(store, apiService);
     apiService.onInit(SUPPLY_DISTRIBUTION_ROUTES);
+
+    this.pageId =  this.route.snapshot.paramMap.get('id') || '';
+    const query = this.route.snapshot.queryParamMap.get('is_final');
+    const isFinal = Number(query);
+
+    this.tableConfig = isFinal ? FINAL_SUPPLY_DISTRIBUTION_TABLE_CONFIG
+      : NON_FINAL_SUPPLY_DISTRIBUTION_TABLE_CONFIG;
   }
 
+  tableConfig: TableColumnConfig[];
   pageId: string = '';
-  tableConfig = SUPPLY_DISTRIBUTION_TABLE_CONFIG;
 
   ngOnInit(): void {
     this.loading = true;
-    const id =  this.route.snapshot.paramMap.get('id') || '';
-    this.pageId = id;
 
-    this.apiService.getData<SupplyDistribution[]>({id}).subscribe(data => {
+    this.apiService.getData<SupplyDistribution[]>({id: this.pageId}).subscribe(data => {
       this.store.setList(data);
       this.loading = false;
     });

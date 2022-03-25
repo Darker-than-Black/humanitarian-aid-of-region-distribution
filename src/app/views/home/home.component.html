@@ -7,21 +7,18 @@
   <ng-template #tableDataTemplate let-data let-item="item" let-config="config">
     <ng-container [ngSwitch]="config.key">
       <ng-container *ngSwitchCase="'name'" >
-        <a *ngIf="item.status.is_final" [routerLink]="['/supply', item.id ]">
+        <a [routerLink]="['/supply', item.id]" [queryParams]="getQuery(item)">
           {{ data }}
         </a>
 
-        <ng-container *ngIf="!item.status.is_final" >
-          {{ data }}
-
-          <button
-            pButton
-            type="button"
-            label="Отримано"
-            class="mt-2 ml-2 p-0"
-            (click)="dialogChangeStatus = item"
-          ></button>
-        </ng-container>
+        <button
+          *ngIf="!item.status.is_final"
+          pButton
+          type="button"
+          label="Отримано"
+          class="mt-2 ml-2 p-0"
+          (click)="dialogChangeStatus = item"
+        ></button>
       </ng-container>
 
       <span

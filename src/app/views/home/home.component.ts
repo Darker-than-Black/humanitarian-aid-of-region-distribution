@@ -33,5 +33,11 @@ export class HomeComponent extends PageMixin<Item> implements OnInit {
       this.loading = false;
     });
   }
+
+  getQuery({ status: { is_final } }: Item): Record<string, any> {
+    return {
+      is_final: Number(is_final),
+    };
+  }
 }
 

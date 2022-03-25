@@ -7,6 +7,7 @@ export const DOZ_SUPPLY_TABLE_CONFIG: TableColumnConfig[] = [
     key: 'item_id',
     label: '№',
     filterable: true,
+    minWidth: '5rem',
   },
   {
     key: 'name',
@@ -32,7 +33,7 @@ export const DOZ_SUPPLY_TABLE_CONFIG: TableColumnConfig[] = [
   },
 ];
 
-export const SUPPLY_DISTRIBUTION_TABLE_CONFIG: TableColumnConfig[] = [
+export const FINAL_SUPPLY_DISTRIBUTION_TABLE_CONFIG: TableColumnConfig[] = [
   {
     key: 'name',
     label: 'Назва',
@@ -53,6 +54,24 @@ export const SUPPLY_DISTRIBUTION_TABLE_CONFIG: TableColumnConfig[] = [
     label: 'Залишок поставки',
     filterable: true,
     defaultValue: 0,
+  },
+];
+
+export const NON_FINAL_SUPPLY_DISTRIBUTION_TABLE_CONFIG: TableColumnConfig[] = [
+  {
+    key: 'name',
+    label: 'Назва',
+    filterable: true,
+  },
+  {
+    key: 'dosage',
+    label: 'одиниця',
+    filterable: true,
+  },
+  {
+    key: 'quantity',
+    label: 'Кількість поставки',
+    filterable: true,
   },
 ];
 
