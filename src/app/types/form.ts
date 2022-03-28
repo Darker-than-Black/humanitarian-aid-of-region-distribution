@@ -1,5 +1,5 @@
 import { FieldTypeConfig, FormlyFieldConfig, FormlyTemplateOptions } from '@ngx-formly/core';
-import { FIELD_TYPES } from '../constants/fieldTypes';
+import { FIELD_TYPES } from 'med-table';
 
 export interface ItemForm extends Record<string, any> {}
 

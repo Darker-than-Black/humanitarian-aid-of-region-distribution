@@ -1,13 +1,12 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { MedTableColumnConfig } from 'med-table';
 
 import { PageMixin } from '../../mixins/PageMixin';
 import { HOME_ROUTES } from '../../configs/apiRoutes';
 import { ApiService } from '../../services/api.service';
 import { StoreService } from '../../services/store.service';
 import { Item } from '../../types/api';
-import { TableColumnConfig } from '../../types/table';
 import { DOZ_SUPPLY_TABLE_CONFIG } from '../../configs/tableConfigs';
-// import { ElementHostDirective } from '../../directives/element-host.directive';
 
 @Component({
   selector: 'app-home',
@@ -21,9 +20,7 @@ export class HomeComponent extends PageMixin<Item> implements OnInit {
   }
 
   dialogChangeStatus?: Item;
-  tableConfig: TableColumnConfig[] = DOZ_SUPPLY_TABLE_CONFIG;
-
-  // @ViewChild(ElementHostDirective, {static: true}) fromDirective!: ElementHostDirective;
+  tableConfig: MedTableColumnConfig[] = DOZ_SUPPLY_TABLE_CONFIG;
 
   ngOnInit() {
     this.loading = true;

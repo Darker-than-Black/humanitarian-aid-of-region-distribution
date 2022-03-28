@@ -21,9 +21,13 @@ export class ZozDistributionComponent extends PageMixin<ZozDivision> implements 
   ) {
     super(store, apiService);
     apiService.onInit(ZOZ_DISTRIBUTION_ROUTES);
+
+    const is_final = this.route.snapshot.queryParamMap.get('is_final');
+    this.queryParams = { is_final };
   }
 
   readonly tableConfig = ZOZ_DISTRIBUTION_TABLE_CONFIG;
+  readonly queryParams = {};
   parentId: string = '';
   itemId: string = '';
   supply: ZozSupply = {

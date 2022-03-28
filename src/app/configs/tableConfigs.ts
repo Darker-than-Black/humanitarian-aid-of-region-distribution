@@ -1,8 +1,7 @@
-import {formatDate} from '../utils';
-import {TableColumnConfig} from '../types/table';
-import {FIELD_TYPES} from "../constants/fieldTypes";
+import { FIELD_TYPES, MedTableColumnConfig } from 'med-table';
+import { formatDate } from '../utils';
 
-export const DOZ_SUPPLY_TABLE_CONFIG: TableColumnConfig[] = [
+export const DOZ_SUPPLY_TABLE_CONFIG: MedTableColumnConfig[] = [
   {
     key: 'item_id',
     label: '№',
@@ -33,7 +32,7 @@ export const DOZ_SUPPLY_TABLE_CONFIG: TableColumnConfig[] = [
   },
 ];
 
-export const FINAL_SUPPLY_DISTRIBUTION_TABLE_CONFIG: TableColumnConfig[] = [
+export const FINAL_SUPPLY_DISTRIBUTION_TABLE_CONFIG: MedTableColumnConfig[] = [
   {
     key: 'name',
     label: 'Назва',
@@ -57,7 +56,7 @@ export const FINAL_SUPPLY_DISTRIBUTION_TABLE_CONFIG: TableColumnConfig[] = [
   },
 ];
 
-export const NON_FINAL_SUPPLY_DISTRIBUTION_TABLE_CONFIG: TableColumnConfig[] = [
+export const NON_FINAL_SUPPLY_DISTRIBUTION_TABLE_CONFIG: MedTableColumnConfig[] = [
   {
     key: 'name',
     label: 'Назва',
@@ -75,7 +74,7 @@ export const NON_FINAL_SUPPLY_DISTRIBUTION_TABLE_CONFIG: TableColumnConfig[] = [
   },
 ];
 
-export const ZOZ_DISTRIBUTION_TABLE_CONFIG: TableColumnConfig[] = [
+export const ZOZ_DISTRIBUTION_TABLE_CONFIG: MedTableColumnConfig[] = [
   {
     key: 'division',
     label: 'ЗОЗ-отримувачі',

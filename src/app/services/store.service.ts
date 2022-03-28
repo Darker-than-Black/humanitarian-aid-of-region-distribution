@@ -42,6 +42,5 @@ export class StoreService<ListType extends Record<string, any>> {
   // refresh service
   onRestore() {
     this.data.list = [];
-    this.data.selectOptions = {};
   }
 }

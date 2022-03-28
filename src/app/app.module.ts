@@ -5,13 +5,12 @@ import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
+import {MedTableModule, FIELD_TYPES} from 'med-table';
 import {FormlyModule} from '@ngx-formly/core';
 
-import {FIELD_TYPES} from './constants/fieldTypes';
-import { ROUTES } from './routes';
+import {ROUTES} from './routes';
 
 import {ToastModule} from 'primeng/toast';
-import {TableModule} from 'primeng/table';
 import {MessageService} from 'primeng/api';
 import {ButtonModule} from 'primeng/button';
 import {DialogModule} from 'primeng/dialog';
@@ -22,8 +21,7 @@ import {InputTextareaModule} from 'primeng/inputtextarea';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 
 import {AppComponent} from './app.component';
-import {TableComponent} from './components/table/table.component';
-import {TableDataComponent} from './components/table-data/table-data.component';
+import {HomeComponent} from './views/home/home.component';
 import {InputComponent} from './components/forms/input/input.component';
 import {TextareaComponent} from './components/forms/textarea/textarea.component';
 import {SelectComponent} from './components/forms/select/select.component';
@@ -34,7 +32,6 @@ import {DynamicInputMaskComponent} from './components/forms/dynamic-input-mask/d
 import {DynamicTextareaComponent} from './components/forms/dynamic-textarea/dynamic-textarea.component';
 import {WrapperDynamicInputComponent} from './components/forms/wrapper-dynamic-input/wrapper-dynamic-input.component';
 import {ChangeStatusFormComponent} from './components/change-status-form/change-status-form.component';
-import {HomeComponent} from './views/home/home.component';
 import {PageNotFoundComponent} from './views/page-not-found/page-not-found.component';
 import {SupplyDistributionComponent} from './views/supply-distribution/supply-distribution.component';
 import {ElementHostDirective} from './directives/element-host.directive';
@@ -44,10 +41,8 @@ import {ZozDistributionComponent} from './views/zoz-distribution/zoz-distributio
   declarations: [
     AppComponent,
     InputComponent,
-    TableComponent,
     SelectComponent,
     TextareaComponent,
-    TableDataComponent,
     InputMaskComponent,
     DynamicInputComponent,
     DynamicSelectComponent,
@@ -62,12 +57,12 @@ import {ZozDistributionComponent} from './views/zoz-distribution/zoz-distributio
     ZozDistributionComponent,
   ],
   imports: [
-    TableModule,
     ToastModule,
     FormsModule,
     DialogModule,
     ButtonModule,
     BrowserModule,
+    MedTableModule,
     InputTextModule,
     InputMaskModule,
     HttpClientModule,

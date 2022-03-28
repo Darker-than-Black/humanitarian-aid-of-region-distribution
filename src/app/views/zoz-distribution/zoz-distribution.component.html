@@ -1,5 +1,9 @@
 <nav>
-  <a class="p-button p-button-text link" [routerLink]="['/supply', parentId]">
+  <a
+    class="p-button p-button-text link"
+    [routerLink]="['/supply', parentId]"
+    [queryParams]="queryParams"
+  >
     <i class="pi pi-arrow-left link__icon"></i>
     <span class="link__text">Назад</span>
   </a>
@@ -17,9 +21,9 @@
   </li>
 </ul>
 
-<app-table
+<med-table
   [data]="store.list"
   [loading]="loading"
   [config]="tableConfig"
   (updateColumn)="onUpdateColumn($event)"
-></app-table>
+></med-table>

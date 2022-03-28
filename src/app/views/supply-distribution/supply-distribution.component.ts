@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { MedTableColumnConfig } from 'med-table';
 
 import { PageMixin } from '../../mixins/PageMixin';
 import { ApiService } from '../../services/api.service';
@@ -10,7 +11,6 @@ import {
   FINAL_SUPPLY_DISTRIBUTION_TABLE_CONFIG,
   NON_FINAL_SUPPLY_DISTRIBUTION_TABLE_CONFIG,
 } from '../../configs/tableConfigs';
-import {TableColumnConfig} from "../../types/table";
 
 @Component({
   selector: 'app-supply-distribution',
@@ -27,14 +27,15 @@ export class SupplyDistributionComponent extends PageMixin<SupplyDistribution> i
     apiService.onInit(SUPPLY_DISTRIBUTION_ROUTES);
 
     this.pageId =  this.route.snapshot.paramMap.get('id') || '';
-    const query = this.route.snapshot.queryParamMap.get('is_final');
-    const isFinal = Number(query);
+    const is_final = this.route.snapshot.queryParamMap.get('is_final');
+    this.queryParams = { is_final };
 
-    this.tableConfig = isFinal ? FINAL_SUPPLY_DISTRIBUTION_TABLE_CONFIG
+    this.tableConfig = Number(is_final) ? FINAL_SUPPLY_DISTRIBUTION_TABLE_CONFIG
       : NON_FINAL_SUPPLY_DISTRIBUTION_TABLE_CONFIG;
   }
 
-  tableConfig: TableColumnConfig[];
+  readonly tableConfig: MedTableColumnConfig[];
+  readonly queryParams = {};
   pageId: string = '';
 
   ngOnInit(): void {
