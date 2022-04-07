@@ -24,6 +24,7 @@ export const DOZ_SUPPLY_TABLE_CONFIG: MedTableColumnConfig[] = [
     key: 'status.name',
     label: 'Поточний статус',
     filterable: true,
+    minWidth: '18rem',
     filterType: FILTER_TYPES.SELECT,
   },
   {
