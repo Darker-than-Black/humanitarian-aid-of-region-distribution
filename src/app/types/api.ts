@@ -15,6 +15,23 @@ export interface Item extends Record<string, any> {
   item_id: string
   updated?: string
   delivered?: string
+
+  driver: Driver
+  transport: Transport
+  location?: string
+  sender?: string
+}
+
+export interface Driver {
+  id?: string
+  name?: string
+  phone?: string
+}
+
+export interface Transport {
+  id?: string
+  name?: string
+  type?: string
 }
 
 export interface SupplyDistribution extends Record<string, any> {

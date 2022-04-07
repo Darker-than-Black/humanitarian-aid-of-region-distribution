@@ -5,13 +5,8 @@
   </a>
 </nav>
 
-<med-table
-  [data]="store.list"
-  [loading]="loading"
-  [config]="tableConfig"
-  [tableDataTemplate]="tableDataTemplate"
->
-  <ng-template #tableDataTemplate let-data let-item="item" let-config="config">
+<med-table [data]="store.list" [loading]="loading" [config]="tableConfig">
+  <ng-template mTemplate="tableData" let-data let-item="item" let-config="config">
     <ng-container [ngSwitch]="config.key">
       <a
         *ngSwitchCase="'delivery_balance'"

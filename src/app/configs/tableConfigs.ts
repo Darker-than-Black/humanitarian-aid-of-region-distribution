@@ -1,5 +1,5 @@
-import { FIELD_TYPES, MedTableColumnConfig } from 'med-table';
-import { formatDate } from '../utils';
+import { FIELD_TYPES, FILTER_TYPES, MedTableColumnConfig } from 'med-table';
+import { formatDate, getPreviewDriver, getPreviewTransport } from '../utils';
 
 export const DOZ_SUPPLY_TABLE_CONFIG: MedTableColumnConfig[] = [
   {
@@ -18,17 +18,42 @@ export const DOZ_SUPPLY_TABLE_CONFIG: MedTableColumnConfig[] = [
     label: 'Дата надходження',
     viewHandler: formatDate,
     filterable: true,
+    filterType: FILTER_TYPES.DATE,
   },
   {
     key: 'status.name',
     label: 'Поточний статус',
     filterable: true,
+    filterType: FILTER_TYPES.SELECT,
   },
   {
     key: 'updated',
     label: 'Дата остінньої зміни статусу',
     viewHandler: formatDate,
     filterable: true,
+    filterType: FILTER_TYPES.DATE,
+  },
+  {
+    key: 'location',
+    label: 'Поточне місцезнаходження',
+    filterable: true,
+  },
+  {
+    key: 'sender',
+    label: 'Відправник',
+    filterable: true,
+  },
+  {
+    key: 'transport',
+    label: 'Транспорт',
+    filterable: true,
+    viewHandler: getPreviewTransport,
+  },
+  {
+    key: 'driver',
+    label: 'Водій',
+    filterable: true,
+    viewHandler: getPreviewDriver,
   },
 ];
 

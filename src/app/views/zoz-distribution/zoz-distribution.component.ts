@@ -1,5 +1,6 @@
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { MedUpdateColumnEvent } from 'med-table';
 
 import { PageMixin } from '../../mixins/PageMixin';
 import { ApiService } from '../../services/api.service';
@@ -48,7 +49,7 @@ export class ZozDistributionComponent extends PageMixin<ZozDivision> implements 
       });
   }
 
-  onUpdateColumn(item: ZozDivision): void {
+  onUpdateColumn({item}: MedUpdateColumnEvent<ZozDivision>): void {
     this.loading = true;
 
     this.apiService.updateItem<ZozDivision>(item).subscribe(data => {
