@@ -9,21 +9,24 @@
   </a>
 </nav>
 
-<ul class="list" style="max-width: 400px;">
-  <li class="list__item">
-    <span class="list__item-title">Кількість поставки</span>
-    {{ supply.quantity }}
-  </li>
-
-  <li class="list__item">
-    <span class="list__item-title">Залишок поставки</span>
-    {{ supply.delivery_balance }}
-  </li>
-</ul>
-
 <med-table
   [data]="store.list"
   [loading]="loading"
   [config]="tableConfig"
+  [settings]="tableSettings"
   (updateColumn)="onUpdateColumn($event)"
-></med-table>
+>
+  <ng-template mTemplate="toolbar">
+    <ul class="list">
+      <li class="list__item">
+        <span class="list__item-title">Кількість поставки</span>
+        {{ supply.quantity }}
+      </li>
+
+      <li class="list__item mb-0">
+        <span class="list__item-title">Залишок поставки</span>
+        {{ supply.delivery_balance }}
+      </li>
+    </ul>
+  </ng-template>
+</med-table>

@@ -1,3 +1,4 @@
+import { set, get } from 'lodash';
 import { Injectable } from '@angular/core';
 
 interface StoreData<T> {
@@ -26,9 +27,11 @@ export class StoreService<ListType extends Record<string, any>> {
     this.data.list = data;
   }
 
-  updateListItem(item: ListType, compareKey: string = 'id'): void {
-    this.data.list = this.data.list
-      .map(el => el[compareKey] === item[compareKey] ? item : el);
+  updateListItem(item: ListType, changedKey: string, compareKey: string = 'id'): void {
+    this.data.list.forEach(el => {
+      if (el[compareKey] !== item[compareKey]) return;
+      set(el, changedKey, get(item, changedKey));
+    });
   }
 
   addListItem(item: ListType): void {

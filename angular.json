@@ -38,7 +38,10 @@
               "node_modules/primeflex/primeflex.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "xlsx-js-style"
+            ]
           },
           "configurations": {
             "production": {

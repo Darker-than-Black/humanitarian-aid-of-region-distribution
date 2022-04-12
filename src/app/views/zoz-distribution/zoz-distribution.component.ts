@@ -1,6 +1,6 @@
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { MedUpdateColumnEvent } from 'med-table';
+import {MedTableSettings, MedUpdateColumnEvent} from 'med-table';
 
 import { PageMixin } from '../../mixins/PageMixin';
 import { ApiService } from '../../services/api.service';
@@ -31,6 +31,10 @@ export class ZozDistributionComponent extends PageMixin<ZozDivision> implements 
   readonly queryParams = {};
   parentId: string = '';
   itemId: string = '';
+  tableSettings: MedTableSettings = {
+    export: true,
+    exportFileName: 'Розподіли на ЗОЗ',
+  };
   supply: ZozSupply = {
     quantity: '',
     delivery_balance: '',
@@ -49,11 +53,11 @@ export class ZozDistributionComponent extends PageMixin<ZozDivision> implements 
       });
   }
 
-  onUpdateColumn({item}: MedUpdateColumnEvent<ZozDivision>): void {
+  onUpdateColumn({item, key}: MedUpdateColumnEvent<ZozDivision>): void {
     this.loading = true;
 
     this.apiService.updateItem<ZozDivision>(item).subscribe(data => {
-      this.store.updateListItem(data, 'division_id');
+      this.store.updateListItem(data, key,'division_id');
       this.loading = false;
     });
   }

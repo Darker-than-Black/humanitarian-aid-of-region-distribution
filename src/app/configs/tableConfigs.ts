@@ -105,6 +105,7 @@ export const ZOZ_DISTRIBUTION_TABLE_CONFIG: MedTableColumnConfig[] = [
     key: 'division',
     label: 'ЗОЗ-отримувачі',
     filterable: true,
+    minWidth: '25rem',
   },
   {
     key: 'need',

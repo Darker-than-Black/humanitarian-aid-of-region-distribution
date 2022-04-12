@@ -39,7 +39,7 @@ export class ChangeStatusFormComponent {
   update() {
     this.apiService.updateItem({...this.data, status: this.selectedValue} as any)
       .subscribe((data) => {
-        this.store.updateListItem(data);
+        this.store.updateListItem(data, 'status');
         this.closeModal.emit();
       });
   }
