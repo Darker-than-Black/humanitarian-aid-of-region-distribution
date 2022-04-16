@@ -3,6 +3,7 @@
 export interface ServerResponse<T> {
   success: boolean
   error?: string
+  role?: string
   data: T
 }
 
@@ -60,6 +61,8 @@ export interface ZozDivision {
   recommended_quantity?: string
   zoz_id?: string
   distribution_quantity?: string
+
+  editable?: boolean
 }
 
 export interface ZozSupply {

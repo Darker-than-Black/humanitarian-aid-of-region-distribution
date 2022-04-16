@@ -1,6 +1,6 @@
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import {MedTableSettings, MedUpdateColumnEvent} from 'med-table';
+import { MedTableSettings, MedUpdateColumnEvent } from 'med-table';
 
 import { PageMixin } from '../../mixins/PageMixin';
 import { ApiService } from '../../services/api.service';
@@ -47,7 +47,7 @@ export class ZozDistributionComponent extends PageMixin<ZozDivision> implements 
 
     this.apiService.getData<ZozDistribution>({item_id: this.itemId}, {})
       .subscribe(({divisions, supply}) => {
-        this.store.setList(divisions);
+        this.store.setList(divisions.map(el => ({...el, editable: this.store.isNotManager})));
         this.supply = supply;
         this.loading = false;
       });

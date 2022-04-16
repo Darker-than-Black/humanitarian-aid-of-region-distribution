@@ -58,6 +58,12 @@ export const DOZ_SUPPLY_TABLE_CONFIG: MedTableColumnConfig[] = [
   },
 ];
 
+export const DOZ_RECIPIENT_COL: MedTableColumnConfig = {
+  label: 'Отримувач',
+  key: 'recipient',
+  filterable: true,
+};
+
 export const FINAL_SUPPLY_DISTRIBUTION_TABLE_CONFIG: MedTableColumnConfig[] = [
   {
     key: 'name',
@@ -121,6 +127,7 @@ export const ZOZ_DISTRIBUTION_TABLE_CONFIG: MedTableColumnConfig[] = [
     key: 'distribution_quantity',
     label: 'Обсяг розподілу',
     filterable: true,
+    visibleEditorHandler: ({editable}) => editable,
     editorType: FIELD_TYPES.NUMBER,
   },
   {

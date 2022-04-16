@@ -1,4 +1,4 @@
-<med-table [data]="store.list" [loading]="loading" [config]="tableConfig">
+<med-table [data]="data" [loading]="loading" [config]="tableConfig">
   <ng-template mTemplate="tableData" let-data let-item="item" let-config="config">
     <ng-container [ngSwitch]="config.key">
       <ng-container *ngSwitchCase="'name'" >
@@ -7,7 +7,7 @@
         </a>
 
         <button
-          *ngIf="!item.status.is_final"
+          *ngIf="!item.status.is_final && store.isNotManager"
           pButton
           type="button"
           label="Отримано"
@@ -23,6 +23,16 @@
         {{ data }}
       </span>
     </ng-container>
+  </ng-template>
+
+  <ng-template mTemplate="paginator">
+    <label for="checkedFinalStatus" class="flex align-items-center">
+      <p-inputSwitch
+        inputId="checkedFinalStatus"
+        [(ngModel)]="checkedFinalStatus"
+      ></p-inputSwitch>
+      <span class="ml-2">Приховати планові поставки</span>
+    </label>
   </ng-template>
 </med-table>
 

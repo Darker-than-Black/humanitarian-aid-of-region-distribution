@@ -4,6 +4,7 @@ import { catchError, map, Observable, of, tap } from 'rxjs';
 
 import { UrlBuilder } from './url-builder';
 import { ServerResponse } from '../types/api';
+import { StoreService } from './store.service';
 import { NotificationService } from './notification.service';
 import { NOTIFICATION_TYPES } from '../constants/notificationTypes';
 import { notificationMessages } from '../constants/notificationMessages';
@@ -12,7 +13,7 @@ import { notificationMessages } from '../constants/notificationMessages';
   providedIn: 'root'
 })
 export class ApiService {
-  constructor(private http: HttpClient, private notification: NotificationService) {}
+  constructor(private http: HttpClient, private notification: NotificationService, private store: StoreService<any>) {}
 
   private routes: Record<string, string> = {};
   private httpOptions = {
@@ -60,11 +61,13 @@ export class ApiService {
     this.routes = {};
   }
 
-  private responseHandler<T>({data, error}: ServerResponse<T>, defaultValue: any): T {
+  private responseHandler<T>({data, error, role}: ServerResponse<T>, defaultValue: any): T {
     if (error) {
       this.log(`Failed: ${error}`, 'error');
       this.notification.add(error, NOTIFICATION_TYPES.ERROR);
     }
+
+    if (role) this.store.setRole(role);
 
     return data || defaultValue;
   }
