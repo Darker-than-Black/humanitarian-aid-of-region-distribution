@@ -21,7 +21,6 @@ export class HomeComponent extends PageMixin<Item> implements OnInit {
 
   checkedFinalStatus: boolean = true;
   dialogChangeStatus?: Item;
-  tableConfig: MedTableColumnConfig[] = DOZ_SUPPLY_TABLE_CONFIG;
 
   get data(): Item[] {
     if (this.checkedFinalStatus) {
@@ -31,14 +30,18 @@ export class HomeComponent extends PageMixin<Item> implements OnInit {
     return this.store.list;
   }
 
+  get tableConfig(): MedTableColumnConfig[] {
+    if (this.store.isNotManager) {
+      return DOZ_SUPPLY_TABLE_CONFIG;
+    }
+
+    return  DOZ_SUPPLY_TABLE_CONFIG.concat(DOZ_RECIPIENT_COL);
+  }
+
   ngOnInit() {
     this.loading = true;
 
     this.apiService.getData<Item[]>().subscribe(data => {
-      if (this.store.isManager) {
-        this.tableConfig.push(DOZ_RECIPIENT_COL);
-      }
-
       this.store.setList(data);
       this.loading = false;
     });
