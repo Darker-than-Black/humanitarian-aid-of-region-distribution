@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MedTableColumnConfig } from 'med-table';
+import { Component, OnInit } from '@angular/core';
+import { MedTableColumnConfig, MedTableSettings } from 'med-table';
 
 import { PageMixin } from '../../mixins/PageMixin';
 import { ApiService } from '../../services/api.service';
@@ -37,6 +37,12 @@ export class SupplyDistributionComponent extends PageMixin<SupplyDistribution> i
   readonly tableConfig: MedTableColumnConfig[];
   readonly queryParams = {};
   pageId: string = '';
+
+  get tableSettings(): MedTableSettings {
+    return {
+      exportFileName: `MedData Партія ${this.pageId}`,
+    };
+  }
 
   ngOnInit(): void {
     this.loading = true;

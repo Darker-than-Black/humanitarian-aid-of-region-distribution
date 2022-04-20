@@ -5,7 +5,24 @@
   </a>
 </nav>
 
-<med-table [data]="store.list" [loading]="loading" [config]="tableConfig">
+<med-table
+  #tableRef
+  [data]="store.list"
+  [loading]="loading"
+  [config]="tableConfig"
+  [settings]="tableSettings"
+>
+  <ng-template mTemplate="paginator">
+    <button
+      pButton
+      pRipple
+      type="button"
+      icon="pi pi-file-excel"
+      class="p-button-rounded p-button-success mr-4"
+      (click)="tableRef.exportData()"
+    ></button>
+  </ng-template>
+
   <ng-template mTemplate="tableData" let-data let-item="item" let-config="config">
     <ng-container [ngSwitch]="config.key">
       <a
