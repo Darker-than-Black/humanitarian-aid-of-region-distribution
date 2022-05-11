@@ -1,9 +1,13 @@
-<nav>
-  <a class="p-button p-button-text link" routerLink="/">
-    <i class="pi pi-arrow-left link__icon"></i>
-    <span class="link__text">Назад</span>
-  </a>
-</nav>
+<div class="flex align-items-center">
+  <nav>
+    <a class="p-button p-button-text link" routerLink="/">
+      <i class="pi pi-arrow-left link__icon"></i>
+      <span class="link__text">Назад</span>
+    </a>
+  </nav>
+
+  <h4 *ngIf="store.supplyName" class="p-component">Номер поставки: <b>{{ store.supplyName }}</b></h4>
+</div>
 
 <med-table
   #tableRef

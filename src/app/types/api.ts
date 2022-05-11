@@ -4,6 +4,7 @@ export interface ServerResponse<T> {
   success: boolean
   error?: string
   role?: string
+  supply_name?: string
   data: T
 }
 

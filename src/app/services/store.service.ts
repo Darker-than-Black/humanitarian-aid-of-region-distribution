@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 
 interface StoreData<T> {
   role: string
+  supplyName: string
   list: T[]
   selectOptions: Record<string, string[]>
 }
@@ -13,6 +14,7 @@ interface StoreData<T> {
 export class StoreService<ListType extends Record<string, any>> {
   private data: StoreData<ListType> = {
     role: '',
+    supplyName: '',
     list: [],
     selectOptions: {}
   };
@@ -33,8 +35,16 @@ export class StoreService<ListType extends Record<string, any>> {
     return this.data.role === 'manager';
   }
 
+  get supplyName(): string {
+    return this.data.supplyName;
+  }
+
   setRole(role: string): void {
     this.data.role = role;
+  }
+
+  setSupplyName(supplyName: string): void {
+    this.data.supplyName = supplyName;
   }
 
   setList(data: ListType[]): void {

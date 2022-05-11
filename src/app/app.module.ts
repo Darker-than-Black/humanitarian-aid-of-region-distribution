@@ -5,8 +5,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
-import {MedTableModule, FIELD_TYPES} from 'med-table';
-import {FormlyModule} from '@ngx-formly/core';
+import {MedTableModule} from 'med-table';
 
 import {ROUTES} from './routes';
 

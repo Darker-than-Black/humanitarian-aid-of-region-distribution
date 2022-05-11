@@ -61,13 +61,14 @@ export class ApiService {
     this.routes = {};
   }
 
-  private responseHandler<T>({data, error, role}: ServerResponse<T>, defaultValue: any): T {
+  private responseHandler<T>({data, error, role, supply_name}: ServerResponse<T>, defaultValue: any): T {
     if (error) {
       this.log(`Failed: ${error}`, 'error');
       this.notification.add(error, NOTIFICATION_TYPES.ERROR);
     }
 
     if (role) this.store.setRole(role);
+    if (supply_name) this.store.setSupplyName(supply_name);
 
     return data || defaultValue;
   }
