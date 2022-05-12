@@ -69,4 +69,5 @@ export interface ZozDivision {
 export interface ZozSupply {
   delivery_balance: string
   quantity: string
+  name: string
 }

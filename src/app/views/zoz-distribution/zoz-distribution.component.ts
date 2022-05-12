@@ -36,6 +36,7 @@ export class ZozDistributionComponent extends PageMixin<ZozDivision> implements 
     exportFileName: 'Розподіли на ЗОЗ',
   };
   supply: ZozSupply = {
+    name: '',
     quantity: '',
     delivery_balance: '',
   };
