@@ -9,14 +9,17 @@
   </a>
 </nav>
 
-<med-table
-  [data]="store.list"
-  [loading]="loading"
-  [config]="tableConfig"
-  [settings]="tableSettings"
-  (updateColumn)="onUpdateColumn($event)"
->
-  <ng-template mTemplate="toolbar">
+<p-toolbar>
+  <div class="flex align-items-center w-full md:flex-row flex-column">
+    <button
+      pButton
+      pRipple
+      type="button"
+      icon="pi pi-file-excel"
+      class="p-button-rounded p-button-success mb-4 md:mb-0 md:mr-4"
+      (click)="tableRef.exportData()"
+    ></button>
+
     <ul class="list">
       <li class="list__item">
         <span class="list__item-title">Назва</span>
@@ -33,5 +36,15 @@
         {{ supply.delivery_balance }}
       </li>
     </ul>
-  </ng-template>
-</med-table>
+  </div>
+</p-toolbar>
+
+
+<med-table
+  #tableRef
+  [data]="store.list"
+  [loading]="loading"
+  [config]="tableConfig"
+  [settings]="tableSettings"
+  (updateColumn)="onUpdateColumn($event)"
+></med-table>

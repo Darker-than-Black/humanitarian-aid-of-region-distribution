@@ -13,6 +13,7 @@ import {ToastModule} from 'primeng/toast';
 import {MessageService} from 'primeng/api';
 import {ButtonModule} from 'primeng/button';
 import {DialogModule} from 'primeng/dialog';
+import {ToolbarModule} from 'primeng/toolbar';
 import {InputTextModule} from 'primeng/inputtext';
 import {InputMaskModule} from 'primeng/inputmask';
 import {InputSwitchModule} from 'primeng/inputswitch';
@@ -44,6 +45,7 @@ import {ZozDistributionComponent} from './views/zoz-distribution/zoz-distributio
     DialogModule,
     ButtonModule,
     BrowserModule,
+    ToolbarModule,
     MedTableModule,
     InputTextModule,
     InputMaskModule,

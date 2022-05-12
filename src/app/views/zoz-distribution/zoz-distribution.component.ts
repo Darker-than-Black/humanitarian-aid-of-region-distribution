@@ -32,7 +32,6 @@ export class ZozDistributionComponent extends PageMixin<ZozDivision> implements 
   parentId: string = '';
   itemId: string = '';
   tableSettings: MedTableSettings = {
-    export: true,
     exportFileName: 'Розподіли на ЗОЗ',
   };
   supply: ZozSupply = {
